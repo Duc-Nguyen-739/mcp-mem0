@@ -29,7 +29,11 @@ async def add_memory(content: str) -> str:
 @mcp.tool()
 async def search_memories(query: str) -> str:
     """Search memories in Mem0 Cloud."""
-    async with httpx.AsyncClient, "user_id": USER_ID}
+    async with httpx.AsyncClient() as client:
+        resp = await client.post(
+            f"{MEM0_BASE_URL}/memories/search/",
+            headers=headers,
+            json={"query": query, "user_id": USER_ID}
         )
         return resp.text
 
@@ -42,11 +46,7 @@ async def get_all_memories() -> str:
             headers=headers,
             params={"user_id": USER_ID}
         )
-       () as client:
-        resp = await client.post(
-            f"{MEM0_BASE_URL}/memories/search/",
-            headers=headers,
-            json={"query": query return resp.text
+        return resp.text
 
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
