@@ -49,4 +49,4 @@ async def get_all_memories() -> str:
         return resp.text
 
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http")
+    mcp.run(transport="sse")
