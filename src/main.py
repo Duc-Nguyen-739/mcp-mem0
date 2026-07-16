@@ -49,7 +49,9 @@ async def get_all_memories() -> str:
         )
         return resp.text
 
+# Tạo ASGI app từ FastMCP
+app = mcp.http_app()
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
-    app = mcp.streamable_http_app()
     uvicorn.run(app, host="0.0.0.0", port=port)
